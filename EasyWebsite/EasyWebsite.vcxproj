@@ -141,6 +141,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EasyWebsite.cpp" />
+    <ClCompile Include="FilesStructure.cpp" />
+    <ClCompile Include="HTMLcreator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FilesStructure.h" />
+    <ClInclude Include="HTMLcreator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
