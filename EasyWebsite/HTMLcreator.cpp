@@ -50,13 +50,14 @@ void addContent(Elem* head, ofstream& html, std::string htmlTemplate, std::strin
 		text.close();
 	}
 
-	//while (!text.eof()) {
+	//while (!text.eof()) { //nie dzia³a³o :O
 	//	cout << p;
 	//	getchar();
 	//	getline(text, line);
 	//	//cout << line;
 	//	html << line;
 	//}
+
 	html << "\n</div>\n";
 	//tekst
 

@@ -2,29 +2,38 @@
 #include <filesystem>
 #include <iostream>
 #include <string>
-
+//funkcja g≥Ûwna tworzenia listy dla danego wskaünika;
+bool CreateTree(Elem*& root) {
+	std::cout << "PODAJ SCIEZKE: ";
+	std::string pth;
+	getchar();  //pu≥apka na krasnoludki wciskajπce enter
+	std::getline(std::cin, pth);
+	//std::getline(std::cin, pth);
+	//std::cout << pth;
+	root = new Elem;
+	root->data = pth;
+	root->name = "index";
+	root->next = NULL;
+	root->firstChild = showPath(pth);
+	std::cout << '\a';
+	return true;
+}
 //tworzenie list podkatalogow dla jednego elementu
 Elem* showPath(std::string pth) {
 	std::filesystem::path p(pth.c_str());    //deklaracja zmiennej sciezka
-	if (is_regular_file(p)) {
-		//std::cout << p << " is a file: \n";
-		//std::cout << "fname: " << p.filename() << '\n';
-		return NULL;
-		// nazwa pliku (z rozszrzeniem)
-		//std::cout << "ext: " << p.extension() << '\n'; //rozszerzenie pliku
-		//std::cout << "stem: " << p.stem() << '\n'; //trzon nazwy
-		//std::cout << "size: " << file_size(p) << '\n'; // rozmiar pliku
+	if (is_regular_file(p)) {			//jezeli sciezka prowadzi do pliku to nie ma dzieci wiÍc wskaünik firstChild na NULL
+		return NULL; 
 	}
-	else if (is_directory(p)) {
+	else if (is_directory(p)) { //jezeli sciezka prowadzi do folderu to tworzymy liste elementÛw naleøπcyh do folderu
 		Elem* head = NULL;
 		Elem* tail = NULL;
-		for (const auto& e : std::filesystem::directory_iterator(p)) {
+		for (const auto& e : std::filesystem::directory_iterator(p)) {			//pÍtla sluøπca do przechodzenia po folderze
 			Elem* n = new Elem;
-			//std::cout << e.path().string() <<'\n';
-			n->data = e.path().string();
-			n->name = e.path().filename().string();
-			n->next = NULL;
-			n->firstChild = NULL;
+			n->data = e.path().string();			//zapisanie sciezki do elementu
+			n->name = e.path().filename().string();	//zapisanie nazwy elementu
+			n->type = e.path().extension().string();//zapisanie rozszerzenia elementu, folder nie ma rozszerzenia wiÍc .empty() bedzie = true;
+			n->next = NULL;							//wskaünik na nastÍpny element na NULL
+			n->firstChild = NULL;					//wskaønik na pierwszy podelement danego elementu
 			if (head == NULL) {
 				head = n;
 				tail = n;
@@ -34,13 +43,11 @@ Elem* showPath(std::string pth) {
 				tail->next = n;
 				tail = n;
 			}
-			n->type = e.path().extension().string();
-			//std::cout << n->type <<'\n';
-			n->firstChild = showPath(e.path().string());
+			n->firstChild = showPath(e.path().string());//sprawdzenie sciezki pierwszego podelementu
 		}
 		return head;
 	}
-	else if (exists(p)) {
+	else if (exists(p)) { //plik o niznanym rozszerzeniu
 		//std::cout << p << " is a special file\n";
 		return NULL;
 	}
@@ -49,37 +56,9 @@ Elem* showPath(std::string pth) {
 		return NULL;
 	}
 }
-void print(Elem* head, int level, int& numb) {
-	int i = 0;
-	numb++;
-	std::cout << numb << ". ";
-	while (i < level) {
-		std::cout << "  "; i++;
-	}
-	std::cout << "->" << head->name << '\n';
 
-	if (head->firstChild != NULL) {
-		print(head->firstChild, level + 1, numb);
-	}
-	while (head->next) {
 
-		i = 0;
-		numb++;
-		std::cout << numb << ". ";
-		while (i < level) {
-			std::cout << "  "; i++;
-		}
-		head = head->next;
-		std::cout << "->" << head->name << '\n';
-
-		if (head->firstChild != NULL) {
-			print(head->firstChild, level + 1, numb);
-		}
-
-	}
-}
-
-void deleteTree(Elem*& elem) {
+void deleteTree(Elem*& elem) { //usuwanie struktury
 	if (elem->firstChild != NULL) {
 		deleteTree(elem->firstChild);
 	}
@@ -95,18 +74,4 @@ void deleteTree(Elem*& elem) {
 	}
 	delete elem;
 
-}
-bool CreateTree(Elem*& root) {
-	std::cout << "PODAJ SCIEZKE: ";
-	std::string pth;
-	getchar();  //pu≥apka na krasnoludki wciskajπce enter
-	std::getline(std::cin, pth);
-	//std::getline(std::cin, pth);
-	//std::cout << pth;
-	root = new Elem;
-	root->data = pth;
-	root->name = "index";
-	root->next = NULL;
-	root->firstChild = showPath(pth);
-	return true;
 }

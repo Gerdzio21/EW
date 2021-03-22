@@ -1,5 +1,5 @@
-#ifndef FileTree_H
-#define FileTree_H
+#ifndef FilesStructure_H
+#define FilesStructure_H
 #include<string>
 struct Elem {
 	std::string data; //adres 
@@ -9,7 +9,7 @@ struct Elem {
 	Elem* firstChild = NULL; //wskaznik do pierwszego podelementu
 };
 Elem* showPath(std::string pth);
-void print(Elem* head, int level, int& numb);
+//void printStructure(Elem* head, int level, int& numb);
 void deleteTree(Elem*& elem);
 bool CreateTree(Elem*& root);
 #endif // !

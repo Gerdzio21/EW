@@ -140,11 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ControlPanel.cpp" />
     <ClCompile Include="EasyWebsite.cpp" />
     <ClCompile Include="FilesStructure.cpp" />
     <ClCompile Include="HTMLcreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ControlPanel.h" />
     <ClInclude Include="FilesStructure.h" />
     <ClInclude Include="HTMLcreator.h" />
   </ItemGroup>
