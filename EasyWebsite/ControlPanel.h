@@ -5,7 +5,7 @@
 #include "FilesStructure.h"
 
 void greeting();
-void panel (Elem*& root);
+void panel ();
 
 #endif // !
 

@@ -150,6 +150,9 @@
     <ClInclude Include="FilesStructure.h" />
     <ClInclude Include="HTMLcreator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="manual.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

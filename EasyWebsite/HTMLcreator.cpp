@@ -3,9 +3,9 @@
 #include <string>
 #include "HTMLcreator.h"
 #include "FilesStructure.h"
-using namespace std;
 
-void findTextFile(Elem* head, string& p) {
+
+void findTextFile(Elem* head, std::string& p) {
 	while (head) {
 		//cout << head->data << " " <<head->name << " " << head->type <<'\n';
 		if (head->type == ".txt") {
@@ -18,8 +18,8 @@ void findTextFile(Elem* head, string& p) {
 }
 
 void createHTML(Elem* head, std::string htmlTemplate, std::string folder) {
-	ofstream html; //plik html, do ktorego zapisujemy nasza strone
-	string siteName = head->name;
+	std::ofstream html; //plik html, do ktorego zapisujemy nasza strone
+	std::string siteName = head->name;
 	siteName += ".html";
 	siteName = folder + siteName;
 	html.open(siteName.c_str());
@@ -30,15 +30,15 @@ void createHTML(Elem* head, std::string htmlTemplate, std::string folder) {
 	//std::cout << "Done!\a";
 }
 
-void addContent(Elem* head, ofstream& html, std::string htmlTemplate, std::string folder)
+void addContent(Elem* head, std::ofstream& html, std::string htmlTemplate, std::string folder)
 {
 
 	//tekst
 	html << "<div class=\"tekst\">\n";
 
-	string line;
-	fstream text;
-	string p = "NULL";
+	std::string line;
+	std::fstream text;
+	std::string p = "NULL";
 	findTextFile(head->firstChild, p);
 	if (p != "NULL") {
 		//cout << p << endl;

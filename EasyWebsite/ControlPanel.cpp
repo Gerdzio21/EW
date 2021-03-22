@@ -3,16 +3,14 @@
 #include "FilesStructure.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <filesystem>
 
 
-//zmienne
-int kolumny = 0;
-int rzedy = 0;
-char tekst[] = "Wyswietlany tekst!";
+
 void greeting() {
-	std::cout << "WITAJ w prgramie EasyWebsite wersja ALPHA\n";
-	std::cout << "-> Aby sprawdzicliste dostepnych komend wpisz help\n";
+	std::cout << "Witaj w prgramie EasyWebsite wersja ALPHA\n";
+	std::cout << "Aby sprawdzic liste dostepnych komend wpisz help\n";
 }
 void help() {
 	std::cout << "help - pomoc\n";	
@@ -26,6 +24,15 @@ void help() {
 	std::cout << "clear - wyczysc konsole\n";
 	std::cout << "close - zakoncz program";
 
+}
+void manual() {
+	std::ifstream manual;
+	std::string line;
+	manual.open("manual.txt");
+	while (std ::getline(manual, line)) {
+		std::cout<< line <<'\n';
+	}
+	manual.close();
 }
 void printStructure(Elem* head, int level, int& numb) {
 	int i = 0;
@@ -72,7 +79,7 @@ void readTempl(std::string& s) {
 		s = "BadFile";
 	}
 }
-void print(Elem* root, bool LIST_EXIST) {
+void printK(Elem* root, bool LIST_EXIST) {
 		if (LIST_EXIST) {
 			int numb = 0;
 			if (root->firstChild)
@@ -115,7 +122,8 @@ void close(Elem*& root, bool& LIST_EXIST) {
 }
 
 
-void panel(Elem*& root) {
+void panel() {
+	Elem* root = NULL;
 	std::string command;
 	std::string siteTempl = "NotDeclared";
 	bool LIST_EXIST = false;
@@ -124,8 +132,9 @@ void panel(Elem*& root) {
 		if (command == "close") close(root, LIST_EXIST);
 		else if (command == "clear") system("cls");
 		else if (command == "help") help();
+		else if (command == "dzialanie") manual();
 		else if (command == "utworzK") LIST_EXIST = CreateTree(root);
-		else if (command == "wypiszK") print(root, LIST_EXIST);
+		else if (command == "wypiszK") printK(root, LIST_EXIST);
 		else if (command == "usunK" && LIST_EXIST) del(root, LIST_EXIST);
 		else if (command == "wczytajH") readTempl(siteTempl);
 		else if (command == "wypiszH") std::cout << siteTempl;

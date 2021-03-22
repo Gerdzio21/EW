@@ -1,0 +1,20 @@
+==============================================================================================
+Dzialanie programu jest bardzo proste:
+
+W pierwszym kroku nalezy podac sciezke do folderu "matki".
+Zostanie utworzona struktura niejako drzewa, gdzie kazdy z elementow przechowuje wskaznik
+do sasiedniego folderu/pliku, jak i (w przypaku folderu) wskaznik do pierwszego podelementu.
+
+Mozna podac adres do szablonu html na podstawie ktorego maja byc tworzone podstrony. 
+(obecnie niedostepne)
+
+W kolejnym kroku nalezy podac sciezke do miejsca zapisu plików html.
+
+W kroku ostatnim nalezy wpisac komende HTML! i cieszyc sie nowo utworzona strona.
+Zgodnie z normami strona glowna nazywa sie index.html
+
+Uwagi dodatkowe:
+W przypadku pomylki lub checi zmiany folderu "matki", nalezy najpierw strukture usunac!
+
+Alpha 0.1
+=============================================================================================
