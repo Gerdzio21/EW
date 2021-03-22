@@ -25,7 +25,7 @@ void help() {
 	std::cout << "close - zakoncz program";
 
 }
-void manual() {
+void manual() {  //instrukcja
 	std::ifstream manual;
 	std::string line;
 	manual.open("manual.txt");
@@ -34,7 +34,7 @@ void manual() {
 	}
 	manual.close();
 }
-void printStructure(Elem* head, int level, int& numb) {
+void printStructure(Elem* head, int level, int& numb) {				//wypisywanie struktury
 	int i = 0;
 	numb++;
 	std::cout << numb << ". ";
@@ -63,23 +63,23 @@ void printStructure(Elem* head, int level, int& numb) {
 
 	}
 }
-void readPath(std::string& path) {
+void readPath(std::string& path) {  //wczytywanie œcie¿ki do folderu zapisu
 	std::getchar();  //pu³apka na krasnoludki czaj¹ce siê w buforze
 	std::getline(std::cin, path);
 	if(path[path.size()-1]!='\\') path+='\\';
 }
-void readTempl(std::string& s) {
+void readTempl(std::string& s) {  //wczytywanie œcie¿ki do szablonu strony
 	std::getchar();  //pu³apka na krasnoludki czaj¹ce siê w buforze
 	std::getline(std::cin, s);
 	std::filesystem::path p(s.c_str());    
-	if (is_regular_file(p)&& p.extension()==".html") {
+	if (is_regular_file(p) && p.extension()==".html") {
 		return;
 	}
 	else {
-		s = "BadFile";
+		s = "NotDeclared";
 	}
 }
-void printK(Elem* root, bool LIST_EXIST) {
+void printK(Elem* root, bool LIST_EXIST) {  //wypisanie struktury katalogów
 		if (LIST_EXIST) {
 			int numb = 0;
 			if (root->firstChild)
@@ -90,7 +90,7 @@ void printK(Elem* root, bool LIST_EXIST) {
 		else
 			std::cout << "Lista nieistnieje";
 }
-void del(Elem*& root, bool& LIST_EXIST) {
+void del(Elem*& root, bool& LIST_EXIST) {	//usuwanie struktury katalogów
 	if (LIST_EXIST) {
 		deleteTree(root->firstChild);
 		delete root;
@@ -98,14 +98,14 @@ void del(Elem*& root, bool& LIST_EXIST) {
 		LIST_EXIST = false;
 	}
 }
-void HTML(Elem* root, bool LIST_EXIST){
-	if (LIST_EXIST) {
+void HTML(Elem* root, bool LIST_EXIST, std::string siteTempl){ //tworzenie stron internetowych
+	if (LIST_EXIST && siteTempl!="NotDeclared") {
 		std::string folder;
-		std::cout << "PODAJ NAZWE FOLDERU DO ZAPISU: ";
-		readPath(folder);
-		std::filesystem::path p(folder.c_str());
-		if (is_directory(p)) {
-			createHTML(root, "temp.txt", folder);
+		std::cout << "PODAJ NAZWE FOLDERU DO ZAPISU: ";	
+		readPath(folder);										//podanie folderu zapisu
+		std::filesystem::path p(folder.c_str());				//sprawdzenie czy sciezka jest folderem
+		if (is_directory(p)) {									
+			createHTML(root, siteTempl, folder);
 			std::cout << '\a';
 		}
 		else {
@@ -113,10 +113,11 @@ void HTML(Elem* root, bool LIST_EXIST){
 		}
 	}
 	else {
-		std::cout << "LISTA NIE ISTNIEJE!!!";
+		std::cout << "Error";
+		exit(1);
 	}
 }
-void close(Elem*& root, bool& LIST_EXIST) {
+void close(Elem*& root, bool& LIST_EXIST) {				//zamykanie programu
 	del(root, LIST_EXIST);
 	exit(0);
 }
@@ -138,7 +139,7 @@ void panel() {
 		else if (command == "usunK" && LIST_EXIST) del(root, LIST_EXIST);
 		else if (command == "wczytajH") readTempl(siteTempl);
 		else if (command == "wypiszH") std::cout << siteTempl;
-		else if (command == "HTML!") HTML(root, LIST_EXIST);
+		else if (command == "HTML!") HTML(root, LIST_EXIST, siteTempl);
 		else std::cout << "Nieznana komenda";
 		std::cout << "\n: ";
 	}

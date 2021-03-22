@@ -6,7 +6,6 @@ Zostanie utworzona struktura niejako drzewa, gdzie kazdy z elementow przechowuje
 do sasiedniego folderu/pliku, jak i (w przypaku folderu) wskaznik do pierwszego podelementu.
 
 Mozna podac adres do szablonu html na podstawie ktorego maja byc tworzone podstrony. 
-(obecnie niedostepne)
 
 W kolejnym kroku nalezy podac sciezke do miejsca zapisu plików html.
 

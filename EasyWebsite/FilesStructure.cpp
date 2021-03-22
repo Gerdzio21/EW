@@ -58,7 +58,7 @@ Elem* showPath(std::string pth) {
 }
 
 
-void deleteTree(Elem*& elem) { //usuwanie struktury
+void deleteTree(Elem*& elem) {					//usuwanie struktury
 	if (elem->firstChild != NULL) {
 		deleteTree(elem->firstChild);
 	}
