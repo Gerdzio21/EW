@@ -1,7 +1,7 @@
 ==============================================================================================
 Dzialanie programu jest bardzo proste:
 
-W pierwszym kroku nalezy podac sciezke do folderu "matki".
+W pierwszym kroku nalezy podac sciezke do folderu "matki". Na chwile obecna nazwy folderow nie powinny sie powtarzac!
 Zostanie utworzona struktura niejako drzewa, gdzie kazdy z elementow przechowuje wskaznik
 do sasiedniego folderu/pliku, jak i (w przypaku folderu) wskaznik do pierwszego podelementu.
 
@@ -14,6 +14,10 @@ Zgodnie z normami strona glowna nazywa sie index.html
 
 Uwagi dodatkowe:
 W przypadku pomylki lub checi zmiany folderu "matki", nalezy najpierw strukture usunac!
+
+Materia³y testowe: 
+ArticleTemplate.html 
+FolderMatka
 
 Alpha 0.1
 =============================================================================================

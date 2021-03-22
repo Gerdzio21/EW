@@ -30,7 +30,7 @@ Elem* showPath(std::string pth) {
 		for (const auto& e : std::filesystem::directory_iterator(p)) {			//pêtla slu¿¹ca do przechodzenia po folderze
 			Elem* n = new Elem;
 			n->data = e.path().string();			//zapisanie sciezki do elementu
-			n->name = e.path().filename().string();	//zapisanie nazwy elementu
+			n->name = e.path().stem().string();	//zapisanie nazwy elementu
 			n->type = e.path().extension().string();//zapisanie rozszerzenia elementu, folder nie ma rozszerzenia wiêc .empty() bedzie = true;
 			n->next = NULL;							//wskaŸnik na nastêpny element na NULL
 			n->firstChild = NULL;					//wska¿nik na pierwszy podelement danego elementu

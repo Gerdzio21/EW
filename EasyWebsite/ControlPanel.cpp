@@ -41,7 +41,7 @@ void printStructure(Elem* head, int level, int& numb) {				//wypisywanie struktu
 	while (i < level) {
 		std::cout << "  "; i++;
 	}
-	std::cout << "->" << head->name << '\n';
+	std::cout << "->" << head->name << head->type<< '\n';
 
 	if (head->firstChild != NULL) {
 		printStructure(head->firstChild, level + 1, numb);
@@ -55,7 +55,7 @@ void printStructure(Elem* head, int level, int& numb) {				//wypisywanie struktu
 			std::cout << "  "; i++;
 		}
 		head = head->next;
-		std::cout << "->" << head->name << '\n';
+		std::cout << "->" << head->name << head->type <<'\n';
 
 		if (head->firstChild != NULL) {
 			printStructure(head->firstChild, level + 1, numb);
@@ -69,6 +69,7 @@ void readPath(std::string& path) {  //wczytywanie œcie¿ki do folderu zapisu
 	if(path[path.size()-1]!='\\') path+='\\';
 }
 void readTempl(std::string& s) {  //wczytywanie œcie¿ki do szablonu strony
+	std::cout << "PODAJ SCIEZKE DO SZABLONU HTML: ";
 	std::getchar();  //pu³apka na krasnoludki czaj¹ce siê w buforze
 	std::getline(std::cin, s);
 	std::filesystem::path p(s.c_str());    
